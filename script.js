@@ -12,7 +12,54 @@ function setupInput() {
   window.addEventListener("keydown", handleInput, { once: true })
   window.addEventListener("swiped", handleMobileInput, { once: true });
 }
+async function handleMobileInput(e) {
+    switch (e.detail.dir) {
+      case "up":
+        if (!canMoveUp()) {
+          setupInput();
+          return;
+        }
+        await moveUp();
+        break;
+      case "down":
+        e.preventDefault();
+        if (!canMoveDown()) {
+          setupInput();
+          return;
+        }
+        await moveDown();
+        break;
+      case "left":
+        if (!canMoveLeft()) {
+          setupInput();
+          return;
+        }
+        await moveLeft();
+        break;
+      case "right":
+        if (!canMoveRight()) {
+          setupInput();
+          return;
+        }
+        await moveRight();
+        break;
+      default:
+        setupInput();
+        return;
+    }
+    grid.cells.forEach((cell) => cell.mergeTiles());
 
+    const newTile = new Tile(gameBoard);
+    grid.randomEmptyCell().tile = newTile;
+
+    if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+        newTile.waitForTransition(true).then(() => {
+        alert("Game Over!\nRefresh the page for a new one!");
+        });
+        return;
+    }
+    setupInput();
+}
 async function handleInput(e) {
   console.log(e.key)
   switch (e.key) {
@@ -61,7 +108,6 @@ async function handleInput(e) {
     })
     return
   }
-
   setupInput()
 }
 
