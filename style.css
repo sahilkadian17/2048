@@ -5,7 +5,7 @@
 p{
     display: flex;
     justify-content: center;
-    color: aquamarine;
+    color: rgb(158, 158, 255);
     font-weight: bold;
     font-size: 10vmin;
 }
@@ -14,7 +14,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     margin: 0;
     font-size: 7.5vmin;
     overscroll-behavior-y: contain;
