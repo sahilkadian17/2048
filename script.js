@@ -10,6 +10,7 @@ setupInput()
 
 function setupInput() {
   window.addEventListener("keydown", handleInput, { once: true })
+  window.addEventListener("swiped", handleMobileInput, { once: true });
 }
 
 async function handleInput(e) {
