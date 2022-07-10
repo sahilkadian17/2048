@@ -16,7 +16,7 @@ body{
     align-items: center;
     height: 90vh;
     margin: 0;
-    font-size: 5vmin;
+    font-size: 4vmin;
     overscroll-behavior-y: contain;
 }
 #game-board{
